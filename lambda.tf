@@ -21,7 +21,7 @@ EOF
 resource "aws_lambda_function" "test_lambda" {
   # If the file is not in the current working directory you will need to include a
   # path.module in the filename.
-  filename      = "${path.module}/files/hello.zip"
+  filename      = data.archive_file.lambda_deployment.output_path
   function_name = "hello_world"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "hello.lambda_handler"
